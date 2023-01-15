@@ -1,0 +1,48 @@
+I.
+  1. brew update
+  2. sudo brew install mongodb
+    Warning: No available formula with the name "mongodb".
+  3. mkdir -p /data/db
+  4. sudo chown -R ‘id -un’ /data/db
+    Warning : chown: id -un: illegal user name
+  5. REMOVE all previous installation:  
+    (https://stackoverflow.com/questions/57856809/installing-mongodb-with-homebrew)
+    brew services stop mongodb
+    brew uninstall homebrew/core/mongodb
+  6. Install again: 
+    brew tap mongodb/brew
+    Error: Your Command Line Tools are too outdated.
+    Update them from Software Update in System Preferences.
+    If that doesn't show you any updates, run:
+      7. sudo rm -rf /Library/Developer/CommandLineTools
+      8. sudo xcode-select --install
+  9. brew install mongodb-community
+  10. brew services start mongodb-community
+
+II.
+  Tests:
+  use userdb
+  db.users.insertOne( { name: “Hanna” } )
+  db.users.find()
+
+III.
+  Password hashing by BCrypt:
+
+    - Instal Visiual Studio 2013 Community
+    https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx
+
+    - Install Visual C++ 2008 Redistributables (x64)
+    http://slproweb.com/products/Win32OpenSSL.html
+
+    - Install OpenSSL FULL
+    http://slproweb.com/products/Win32OpenSSL.html
+
+    - Install Node-gyp
+    npm install -g node-gyp
+
+    - Install bcrypt
+    npm install bcrypt
+
+    -- You may need to do this
+    npm install bcrypt --msvs_version=2013
+
