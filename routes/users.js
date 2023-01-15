@@ -45,7 +45,7 @@ router.post('/register', function(req, res, next){
 		var profileImageName = 'noimage.png';
 	}
 
-	// Form Validation
+	// Form Validation (checks for empty fields)
 	req.checkBody('name','Name field is required').notEmpty();
 	req.checkBody('email','Email field is required').notEmpty();
 	req.checkBody('email','Email not valid').isEmail();
@@ -127,6 +127,7 @@ passport.use(new LocalStrategy(
 	}
 ));
 
+// authenticate() is called to check username/password:
 router.post('/login', passport.authenticate('local', {
   failureRedirect:'/users/login', 
   failureFlash:'Invalid username or password'
@@ -134,6 +135,14 @@ router.post('/login', passport.authenticate('local', {
 	console.log('Authentication Successful');
 	req.flash('success', 'You are logged in');
 	res.redirect('/');
+});
+
+router.get('/logout', function(req, res) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      req.flash('success','You have logged out');
+      res.redirect('/users/login');
+    });
 });
 
 module.exports = router;

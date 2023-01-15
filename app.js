@@ -66,6 +66,12 @@ app.use(function (req, res, next) {
   next();
 });
 
+//all routes; use in layout.jade to hide "logout"
+app.get('*', function(req, res, next){
+  res.locals.user = req.user || null;
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
