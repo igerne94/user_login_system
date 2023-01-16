@@ -26,5 +26,6 @@
     "passport-http": "*",
     "passport-local": "*",
     "pug": "^3.0.2"
-  }
+  },
+  "proxy": "https://user-login-system.herokuapp.com/"
 }
